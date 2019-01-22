@@ -65,6 +65,7 @@ class linkList {
     if (!this.head) return undefined;
     this.head = this.head.next;
     this.length--;
+    return this;
   }
   //unshift: accept a value and set it as the new head
   // create a new node and pass it to the function
@@ -102,6 +103,42 @@ class linkList {
     this.get(idx).value = value;
     return true;
   }
+
+  //insert: adding a node to the link at a specific postion
+  //if the index is <0 || >=length,return false
+  // find before and afer and create the link
+  //if the index is the same as the length, just use push()
+  // otherwise use the preNode = get(index-1)
+  // set the newNode.next=preNode.next
+  // set the preNode.next=newNode
+  insert(idx, value) {
+    if (idx < 0 || idx > this.length) return false;
+    if (idx === this.length) {
+      this.push(value);
+      return true;
+    }
+    if (idx === 0) {
+      this.shift(value);
+      return true;
+    }
+
+    // if(index < 0 || index > this.length) return false;
+    // if(index === this.length) return !!this.push(val);
+    // if(index === 0) return !!this.unshift(val);
+    const newNode = new Node(val);
+    newNode.next = get(idx - 1).next;
+    get(idx).next = newNode;
+    this.length++;
+    return true;
+  }
+
+  //remove accept a idx,
+  // if idx <0 and > length, return false
+  //if idx===length, pop
+  // if idx ===0 , unshift
+  // get(idx-1).next = get(idx).next
+
+  //reverse
 }
 
 const testLinkedList = new linkList();
@@ -114,11 +151,3 @@ console.log('shifted', testLinkedList);
 console.log(testLinkedList.get(0));
 console.log(testLinkedList.set(1, 'anything'));
 console.log(testLinkedList);
-
-// Access
-
-// Search
-
-// Insert
-
-// Remove
