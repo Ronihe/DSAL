@@ -81,6 +81,27 @@ class linkList {
     this.length++;
     return this;
   }
+
+  // get : accept an index
+  // if the index is <0 or >=this.length, return null
+  //loop through the list until you reach the index and reutnr the node
+  get(idx) {
+    if (idx < 0 || idx >= this.length) return null;
+    let node = this.head;
+    for (let i = 0; i < idx; i++) {
+      node = node.next;
+    }
+    return node;
+  }
+  //set change the value of a node base on its position
+  // accept an idex and a value
+  //use the get() function getting the node and change the value
+  // if
+  set(idx, value) {
+    if (!this.get(idx)) return false;
+    this.get(idx).value = value;
+    return true;
+  }
 }
 
 const testLinkedList = new linkList();
@@ -90,6 +111,9 @@ testLinkedList.push('andrew');
 console.log(testLinkedList);
 testLinkedList.shift();
 console.log('shifted', testLinkedList);
+console.log(testLinkedList.get(0));
+console.log(testLinkedList.set(1, 'anything'));
+console.log(testLinkedList);
 
 // Access
 
