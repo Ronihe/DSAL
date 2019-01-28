@@ -135,8 +135,21 @@ class linkList {
   //remove accept a idx,
   // if idx <0 and > length, return false
   //if idx===length, pop
-  // if idx ===0 , unshift
+  // if idx ===0 , shift
   // get(idx-1).next = get(idx).next
+  remove(idx) {
+    if (idx < 0 || idx > this.length) return false;
+    const removed = this.get(idx);
+    if (idx === this.length) {
+      this.pop(idx);
+    } else if (idx === this.length) {
+      this.shift(idx);
+    } else {
+      this.get(idx - 1).next = removed.next;
+    }
+    this.length--;
+    return removed.value;
+  }
 
   //reverse
 }
@@ -151,3 +164,4 @@ console.log('shifted', testLinkedList);
 console.log(testLinkedList.get(0));
 console.log(testLinkedList.set(1, 'anything'));
 console.log(testLinkedList);
+console.log(testLinkedList.remove());
