@@ -152,6 +152,25 @@ class linkList {
   }
 
   //reverse
+  // swap head and tail
+  reverse(){
+    //this.head
+    //this.tail
+    let head =
+    let node;
+    let pre;
+    
+    for (let idx =0; idx< this.length; i++){
+      node=get(i).next;
+      node.next=get(i);
+      
+    }
+  }
+  
+  
+  
+  
+  
 }
 
 const testLinkedList = new linkList();
