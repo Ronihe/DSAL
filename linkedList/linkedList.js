@@ -152,35 +152,58 @@ class linkList {
   }
 
   //reverse
+  // create a variable node = this.head;
   // swap head and tail
-  reverse(){
+  reverse() {
     //this.head
     //this.tail
-    let head =
-    let node;
+    let node = this.head;
     let pre;
-    
-    for (let idx =0; idx< this.length; i++){
-      node=get(i).next;
-      node.next=get(i);
-      
+    let next;
+    this.head = this.tail;
+    this.head.next = node.next;
+    console.log('testing', node.next);
+    this.tail = node;
+    console.log('testing2', this.tail.next);
+    this.tail.next = null;
+    console.log(0, node);
+    for (let idx = 0; idx < this.length - 2; idx++) {
+      console.log('loop', node);
+      pre = node;
+      console.log(1, pre, node);
+      next = node.next;
+      console.log(2, next);
+      node = next;
+      console.log(3, pre, node);
+      node.next = pre;
     }
+    return this;
   }
-  
-  
-  
-  
-  
+
+  print() {
+    let linkArr = [];
+    let node = this.head;
+    console.log(node);
+    for (let idx = 0; idx < this.length; idx++) {
+      linkArr.push(node.value);
+      node = node.next;
+    }
+    console.log(linkArr);
+  }
 }
 
 const testLinkedList = new linkList();
-testLinkedList.push('andrew');
-testLinkedList.push('roni');
-testLinkedList.push('andrew');
-console.log(testLinkedList);
-testLinkedList.shift();
-console.log('shifted', testLinkedList);
-console.log(testLinkedList.get(0));
-console.log(testLinkedList.set(1, 'anything'));
-console.log(testLinkedList);
-console.log(testLinkedList.remove());
+testLinkedList.push('one');
+testLinkedList.push('two');
+testLinkedList.push('three');
+testLinkedList.print();
+testLinkedList.reverse();
+console.log('test---', testLinkedList);
+testLinkedList.print();
+//console.log(testLinkedList);
+//testLinkedList.shift();
+// console.log('shifted', testLinkedList);
+// console.log(testLinkedList.get(0));
+// console.log(testLinkedList.set(1, 'anything'));
+// console.log(testLinkedList);
+// console.log(testLinkedList.remove());
