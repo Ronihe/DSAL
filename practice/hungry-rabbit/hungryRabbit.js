@@ -80,7 +80,7 @@ function _findNextSpot(board, currSpot) {
 const garden = [
   [5, 7, 9, 6, 3],
   [0, 0, 7, 0, 4],
-  [4, 6, 11, 4, 9],
+  [4, 6, 3, 4, 9],
   [3, 1, 0, 5, 8]
 ];
 
