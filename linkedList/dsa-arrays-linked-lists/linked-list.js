@@ -71,7 +71,6 @@ class LinkedList {
       this.length--;
       return oldTailVal;
     } else if (this.length === 2) {
-      console.log(this.tail.val);
       const oldTailVal = this.tail.val;
       this.head.next = null;
       this.tail = this.head;
@@ -95,16 +94,64 @@ class LinkedList {
   }
 
   /** shift(): return & remove first item. */
-
-  shift() {}
+  // if there is no node in the list, just throw error 'errors! empty linked list'
+  // create a variable to hold the head's val
+  // if there is only one set the head to null
+  //
+  shift() {
+    if (!this.head) {
+      throw 'errors! empty linked list';
+    }
+    const shiftedHead = this.head.val;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      const secondToHead = this.head.next;
+      this.head = secondToHead;
+    }
+    this.length--;
+    return shiftedHead;
+  }
 
   /** getAt(idx): get val at idx. */
+  // if idx is not a integer and postive, throw err
 
-  getAt(idx) {}
+  getAt(idx) {
+    if (!(Number.isInteger(idx) && idx >= 0 && idx <= this.length - 1)) {
+      throw 'invalid index';
+    }
+    if (!this.head) {
+      return null;
+    }
+
+    let currNode = this.head;
+    for (let i = 0; i <= idx - 1; i++) {
+      currNode = currNode.next;
+    }
+    return currNode.val;
+  }
 
   /** setAt(idx, val): set val at idx to val */
+  // if there is only one node in the linked list, set the head and tail to the new node
+  //else use the for loop to find the node and set the val to the node
+  setAt(idx, val) {
+    if (!(Number.isInteger(idx) && idx >= 0 && idx <= this.length - 1)) {
+      throw 'invalid index';
+    }
 
-  setAt(idx, val) {}
+    if (this.length === 1) {
+      this.head.val = val;
+      this.tail.val = val;
+      return;
+    }
+
+    let currNode = this.head;
+    for (let i = 0; i <= idx - 1; i++) {
+      currNode = currNode.next;
+    }
+    currNode.val = val;
+  }
 
   /** insertAt(idx, val): add node w/val before idx. */
 
