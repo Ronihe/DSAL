@@ -154,11 +154,37 @@ class LinkedList {
   }
 
   /** insertAt(idx, val): add node w/val before idx. */
+  // create a new node with the val in the params; and set variable newNode to the new node
+  //if idx ===0, just use unshift(val)
+  //if idx===this.length, use push(val)
+  //find node for (idx-1) as preNode, create variable nextNode for the node for the preNode.next
+  //set the preNode.next to the newNode, and set the newNode.next to the nextNode
+  insertAt(idx, val) {
+    if (idx < 0 || idx > this.length) {
+      throw 'invalid index';
+    }
+    if (idx === 0) {
+      return this.unshift(val);
+    }
+    if (idx === this.length) {
+      return this.push(val);
+    }
 
-  insertAt(idx, val) {}
+    const newNode = new Node(val);
+
+    let preNode = this.head;
+    for (let i = 0; i <= idx - 2; i++) {
+      preNode = preNode.next;
+    }
+
+    const nextNode = preNode.next;
+    preNode.next = newNode;
+    newNode.next = nextNode;
+    this.length++;
+  }
 
   /** removeAt(idx): return & remove item at idx, */
-
+  //
   removeAt(idx) {}
 
   /** average(): return an average of all values in the list */
