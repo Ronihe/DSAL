@@ -127,25 +127,25 @@ describe('insertAt', function() {
   });
 });
 
-// describe("removeAt", function() {
-//   it("removes from 1-item list", function() {
-//     let lst = new LinkedList(["a"]);
+describe('removeAt', function() {
+  it('removes from 1-item list', function() {
+    let lst = new LinkedList(['a']);
 
-//     lst.removeAt(0);
-//     expect(lst.length).toBe(0);
-//     expect(lst.head).toBe(null);
-//     expect(lst.tail).toBe(null);
-//   });
-// });
+    lst.removeAt(0);
+    expect(lst.length).toBe(0);
+    expect(lst.head).toBe(null);
+    expect(lst.tail).toBe(null);
+  });
+});
 
-// describe("average", function() {
-//   it("calculates the average of items in a list", function() {
-//     let lst = new LinkedList([2, 3, 1, 1, 7, 6, 9]);
-//     expect(lst.average()).toBeCloseTo(4.1429, 4);
-//   });
+describe('average', function() {
+  it('calculates the average of items in a list', function() {
+    let lst = new LinkedList([2, 3, 1, 1, 7, 6, 9]);
+    expect(lst.average()).toBeCloseTo(4.1429, 4);
+  });
 
-//   it("returns 0 for empty lists", function() {
-//     let lst = new LinkedList();
-//     expect(lst.average()).toBe(0);
-//   });
-// });
+  it('returns 0 for empty lists', function() {
+    let lst = new LinkedList();
+    expect(lst.average()).toBe(0);
+  });
+});
