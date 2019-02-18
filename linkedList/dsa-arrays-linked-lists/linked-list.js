@@ -64,18 +64,34 @@ class LinkedList {
 
     if (!this.head) {
       throw 'errors! empty linked list';
-    }
-    if (this.length === 1) {
+    } else if (this.length === 1) {
+      const oldTailVal = this.tail.val;
       this.head = null;
       this.tail = null;
+      this.length--;
+      return oldTailVal;
+    } else if (this.length === 2) {
+      console.log(this.tail.val);
+      const oldTailVal = this.tail.val;
+      this.head.next = null;
+      this.tail = this.head;
+      this.length--;
+      return oldTailVal;
+    } else {
+      const oldTailVal = this.tail.val;
+      const oldLength = this.length;
+      let currNode = this.head;
+      let newLength = 0;
+      while (newLength <= oldLength - 2) {
+        currNode = currNode.next;
+        console.log('this.current node', currNode);
+        newLength++;
+      }
+      currNode.next = null;
+      this.tail = currNode;
+      this.length--;
+      return this.tail.val;
     }
-    let currNode = this.head;
-    while (currNode.next != this.tail) {
-      currNode = currNode.next;
-    }
-    this.tail = currNode;
-    this.length--;
-    return this.tail;
   }
 
   /** shift(): return & remove first item. */
