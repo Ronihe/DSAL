@@ -36,15 +36,34 @@ class Stack {
   /** pop(): remove the node from the top of the stack
    * and return its value. Should throw an error if the stack is empty. */
 
-  pop() {}
+  pop() {
+    if (this.size === 0) {
+      throw new Error('the stack is empty');
+    }
+    const removedFirst = this.first.val;
+    const newFirst = this.first.next;
+    this.head = newFirst;
+    this.size--;
+    if (this.size === 0) {
+      this.last = null;
+    }
+    return removedFirst;
+  }
 
   /** peek(): return the value of the first node in the stack. */
 
-  peek() {}
+  peek() {
+    return this.first.val;
+  }
 
   /** isEmpty(): return true if the stack is empty, otherwise false */
 
-  isEmpty() {}
+  isEmpty() {
+    if (this.size === 0) {
+      return true;
+    }
+    return false;
+  }
 }
 
 module.exports = Stack;
