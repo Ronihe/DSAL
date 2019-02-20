@@ -113,3 +113,23 @@ module.exports = {
   gatherStrings,
   binarySearch
 };
+
+function realSize(arrays, total = 0) {
+  // Force be with you, code warrior!
+
+  for (let el of arrays) {
+    if (Number.isInteger(el)) total++;
+    if (Array.isArray(el)) return realSize(el, total);
+  }
+
+  //helper function
+  // function nestedArray(el, total) {
+  //   if (Number.isInteger(el)) total++;
+  //   if (Array.isArray(el)) nestedArray(el);
+  //   return total;
+  // }
+
+  return total;
+}
+
+console.log(realSize([[[5], 3], 0, 2, [], [4, [5, 6]]]));
