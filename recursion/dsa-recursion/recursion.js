@@ -65,16 +65,43 @@ function findIndex(arr, val) {
 
 /** revString: return a copy of a string, but in reverse. */
 
-function revString(str) {}
+function revString(str, idx = str.length) {
+  if (idx === 0) return '';
+  idx--;
+  return str[idx] + revString(str, idx);
+}
 
 /** gatherStrings: given an object, return an array of all of the string values. */
 
-function gatherStrings(obj) {}
+function gatherStrings(obj, out = []) {
+  for (let key in obj) {
+    // if the value is string, added to the array;
+    if (typeof obj[key] === 'string') out.push(obj[key]);
+
+    // if the value is object, call the itself
+    if (typeof obj[key] === 'object') gatherStrings(obj[key], out);
+    // go to the next
+  }
+  return out;
+  //helper funtion to check the
+}
 
 /** binarySearch: given a sorted array of numbers, and a value,
  * return the index of that value (or -1 if val is not present). */
 
-function binarySearch(arr, val) {}
+function binarySearch(arr, val, left = 0, right = arr.length) {
+  if (left > right) {
+    return -1;
+  }
+  let middle = Math.floor((right + left) / 2);
+  if (arr[middle] === val) {
+    return middle;
+  }
+  if (arr[middle] > val) {
+    return binarySearch(arr, val, left, middle - 1);
+  }
+  return binarySearch(arr, val, middle + 1, right);
+}
 
 module.exports = {
   product,
