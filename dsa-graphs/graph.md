@@ -21,3 +21,19 @@
 - edge - arch connection btw nodes
 - weighted/unweighted: a value assigned to distances between vertices
 - directed/undirected - directions assigned to distanced between vertices
+
+# Big O
+
+# DIFFERENCES & BIG O
+
+|V| - number of verticles
+|E| - number of edges
+
+| OPERATION   |  ADJACENCY LIST  | ADJACENCY MATRIX |
+| ----------- | :--------------: | ---------------: |
+| Add Vertex  |       O(1)       |   O( \| V^2 \| ) |
+| Add Edge    |       O(1)       |             O(1) |
+| RemoveVert  | O(\|V\| + \|E\|) |       O(\|V^2\|) |
+| Remove Edge |     O(\|E\|)     |             O(1) |
+| Query       | O(\|V\| + \|E\|) |             O(1) |
+| Storage     | O(\|V\| + \|E\|) |      ​O(\|V^2\|) |
