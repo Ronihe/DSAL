@@ -31,7 +31,6 @@ class BinarySearchTree {
         //if there is no left node, add the currNode to the left of the node
         if (!currNode.left) {
           currNode.left = newBinNode;
-          console.log(this);
           return this;
         }
         //if there is already left node, check the left node
@@ -41,13 +40,24 @@ class BinarySearchTree {
       if (currNode.value < val) {
         if (!currNode.right) {
           currNode.right = newBinNode;
-          console.log(this);
 
           return this;
         }
         currNode = currNode.right;
       }
     }
+  }
+
+  insertRecursively(val) {
+    const newBinNode = new BinarySearchNode(val);
+    if (this.root === null) {
+      this.root = newBinNode;
+      console.log(this);
+      return this;
+    }
+
+    // helper function doing the recursively
+    function leftOrRight(val) {}
   }
 }
 module.exports = BinarySearchTree;

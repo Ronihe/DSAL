@@ -20,24 +20,31 @@ describe('insert', function() {
   });
 });
 
-// describe('find', function () {
-//   it('find_finds_a_node_correctly', function () {
-//     let binarySearchTree = new BinarySearchTree()
-//     binarySearchTree.insert(15).insert(20).insert(10).insert(12)
-//     var foundNode = binarySearchTree.find(20)
-//     expect(foundNode.value).toBe(20)
-//     expect(foundNode.left).toBe(null)
-//     expect(foundNode.right).toBe(null)
-//   });
-//   it('find_returns_undefined_if_a_node_is_not_found', function () {
-//     let binarySearchTree = new BinarySearchTree()
+describe('find', function() {
+  it('find_finds_a_node_correctly', function() {
+    let binarySearchTree = new BinarySearchTree();
+    binarySearchTree
+      .insert(15)
+      .insert(20)
+      .insert(10)
+      .insert(12);
+    var foundNode = binarySearchTree.find(20);
+    expect(foundNode.value).toBe(20);
+    expect(foundNode.left).toBe(null);
+    expect(foundNode.right).toBe(null);
+  });
+  it('find_returns_undefined_if_a_node_is_not_found', function() {
+    let binarySearchTree = new BinarySearchTree();
 
-//     binarySearchTree.insert(15).insert(20).insert(10).insert(12)
-//     var foundNode = binarySearchTree.find(120)
-//     expect(foundNode).toBe(undefined)
-//   });
-
-// });
+    binarySearchTree
+      .insert(15)
+      .insert(20)
+      .insert(10)
+      .insert(12);
+    var foundNode = binarySearchTree.find(120);
+    expect(foundNode).toBe(undefined);
+  });
+});
 
 // describe('DFS', function () {
 //   it('returns_an_array_of_values_found_with_DFS_In_Order', function () {
