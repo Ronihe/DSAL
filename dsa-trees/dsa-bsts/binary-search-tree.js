@@ -57,7 +57,11 @@ class BinarySearchTree {
     }
 
     // helper function doing the recursively
-    function leftOrRight(val) {}
+    function leftOrRight(val) {
+      
+      
+      if (currNode.value)
+    }
   }
 }
 module.exports = BinarySearchTree;
