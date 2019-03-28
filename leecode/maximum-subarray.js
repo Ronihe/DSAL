@@ -1,5 +1,3 @@
-import { start } from 'repl';
-
 // https://leetcode.com/problems/maximum-subarray/
 
 /**Input: [-2,1,-3,4,-1,2,1,-5,4],
@@ -25,19 +23,25 @@ function maxSubArray(nums) {
       let newSum = nums
         .slice(startingPoint, endingPoint)
         .reduce((acc, curr) => acc + curr);
-      console.log(newSum);
       largestSum = largestSum > newSum ? largestSum : newSum;
     }
   }
   return largestSum;
 }
 
-
 function maxSubArray2(nums) {
-  
-  
-  
+  // kadane
+  let currentMax = nums[0];
+  let globalMax = nums[0];
+
+  for (let i = 1; i < nums.length; i++) {
+    // currentMax is the larger of the current ele and the (currentMax + ele)
+    currentMax = Math.max(nums[i], nums[i] + currentMax);
+    globalMax = Math.max(currentMax, globalMax);
+  }
+
+  return globalMax;
 }
-  
-  let test = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
-maxSubArray(test);
+
+let test = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+console.log(maxSubArray2(test));
