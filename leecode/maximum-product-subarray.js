@@ -6,21 +6,15 @@ function maximumProductSunarray(nums) {
   let globalLargest = nums[0];
 
   for (let i = 1; i < nums.length; i++) {
-    currentLargest = Math.max(
-      currentLargest * nums[i],
-      currentSmallest * nums[i],
-      nums[i]
-    );
-    currentSmallest = Math.min(
-      currentLargest * nums[i],
-      currentSmallest * nums[i],
-      nums[i]
-    );
+    let a = currentLargest * nums[i];
+    let b = currentSmallest * nums[i];
+
+    currentLargest = Math.max(a, b, nums[i]);
+    currentSmallest = Math.min(a, b, nums[i]);
     globalLargest = Math.max(globalLargest, currentLargest);
-    console.log(currentLargest, currentSmallest, globalLargest);
   }
   return globalLargest;
 }
 
-let test = [2, 3, -2, 4];
+let test = [-4, -3, -2];
 console.log(maximumProductSunarray(test));
