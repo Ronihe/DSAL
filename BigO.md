@@ -1,11 +1,11 @@
 # Big O notation
 
+### measure the code's efficiency
+
 # Term:
 
 1. n: the size of the input
 2. runtime:
-
-### measure the code's efficiency
 
 ## the idea about big O is to measure how long an algoo takes to run. when we compare the efficiency of different approaches to a prob.
 
