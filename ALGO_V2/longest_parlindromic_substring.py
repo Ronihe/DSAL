@@ -20,8 +20,11 @@ def longestPalindrome(s):
     # core logics: iterable through the string
     longest = ""
     for mid in range(len(s)):
+        # if the substring
         substring = find_palindrome_from(s, mid, mid)
-        # print(substring)
+        if len(substring) > len(longest):
+            longest = substring
+        substring = find_palindrome_from(s, mid, mid + 1)
         if len(substring) > len(longest):
             longest = substring
 
@@ -32,19 +35,21 @@ def longestPalindrome(s):
 def find_palindrome_from(s, left, right):
     # passed left and right are both center of the
     while left >= 0 and right < len(s):
-        #print(s[left], s[right])
+        # print(s[left], s[right])
         if s[left] != s[right]:
             break
         left -= 1
         right += 1
 
     # be careful about the last left and right
-    palindrome_str = s[left+1: right]
+    palindrome_str = s[left + 1: right]
     return palindrome_str if len(palindrome_str) != 1 else ""
 
 
 # test cases:
 s1 = "ababbb"
 s2 = "ahdllfjaksfljadlao3uhfdjbskjlcvughjb,mndakjslaflajsdflkd"
+s3 = "cbbd"
 print(longestPalindrome(s1))
 print(longestPalindrome(s2))
+print(longestPalindrome(s3))
