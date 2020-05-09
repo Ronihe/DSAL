@@ -17,12 +17,13 @@ class Solution:
     @param s: A string
     @return: Whether the string is a valid palindrome
     """
+
     def isPalindrome(self, s):
         # write your code here
         if not s:
             return True
 
-#         two pointers
+        #         two pointers
         left = 0
         right = len(s) - 1
         while left < right:
@@ -41,6 +42,17 @@ class Solution:
 
         return True
 
+    # def isPalindrome(self, s):
+    #     if not s:
+    #         return True
+    #     # from the middle
+    #     left, right = len(s) // 2
+    #
+    #     if len(s) % 2 == 0:
+    #         right += 1
+    #
+
+
 
 s1 = "A man, a plan, a canal: Panama"
 s2 = "1a2"
@@ -48,5 +60,3 @@ solution = Solution()
 print(solution.isPalindrome(s1))
 
 print(solution.isPalindrome(s2))
-
-

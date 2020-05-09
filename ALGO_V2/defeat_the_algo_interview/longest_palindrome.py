@@ -47,3 +47,4 @@ class Solution:
             return len(s) - len(removed_hash)
 
         return len(s) - len(removed_hash) + 1
+
