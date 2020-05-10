@@ -51,6 +51,19 @@ class LinkedList:
             current_node = current_node.next
         return None
 
+    def size(self):
+
+        if not self.head:
+            return None
+
+        length = 0
+        current_node = self.head
+        while current_node.next:
+            length += 1
+            current_node = current_node.next
+
+        return length + 1
+
     def print(self):
         print_node = self.head
         while print_node:
@@ -63,6 +76,8 @@ second_node = Node(4)
 first_ll.head = Node(3, second_node)
 first_ll.push(10)
 first_ll.unshift(88)
-first_ll.print()
+# first_ll.print()
 first_ll.find(10).next = Node(67)
 first_ll.print()
+size = first_ll.size()
+print(size)
