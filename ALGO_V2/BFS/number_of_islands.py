@@ -65,3 +65,5 @@ test = [[1, 1, 0, 0, 0], [0, 1, 0, 0, 1], [0, 0, 0, 1, 1], [0, 0, 0, 0, 0], [0, 
 solution = Solution()
 num = solution.numIslands(test)
 print(num)
+
+# TODO: use DFS
