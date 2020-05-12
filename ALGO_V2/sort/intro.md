@@ -10,4 +10,7 @@ for the unsorted part, keep getting the smallest and added to the end of the sor
 Time: O n^2 best n^2
 Space : O 1
 
-
+3. insertion sort
+iterate through the loop, find the righ spot in the sorted part
+Time O n^2
+space O 1
