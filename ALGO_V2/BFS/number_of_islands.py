@@ -49,7 +49,7 @@ class Solution:
                 # the spot is valid and == 1 add to the q and visited_set
                 print(self.isValid(next_i, next_j, grid, visited_set))
                 if self.isValid(next_i, next_j, grid, visited_set):
-                    q.append((next_i, next_j))
+                    self.append = q.append((next_i, next_j))
                     visited_set.add((next_i, next_j))
 
     def isValid(self, i, j, grid, visited_set):
