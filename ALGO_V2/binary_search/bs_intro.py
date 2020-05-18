@@ -108,5 +108,5 @@ def binary_search_recursion(arr, start, end, target):
     return binary_search_recursion(arr, start, mid - 1, target)
 
 
-r = binary_search_recursion([1, 2, 3], 0, 0, 10)
+r = binary_search_recursion([1, 2, 3], 0, 0, 1)
 print(r)
