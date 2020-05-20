@@ -33,8 +33,7 @@ def myPow(x, n):
         return myPow(x, n // 2) * myPow(x, n // 2) * x
     return myPow(x, n // 2) * myPow(x, n // 2)
 
-
-r = myPow(2, -147483648) #stack overflow no idea why
+#r = myPow(2, -147483648) #stack overflow no idea why
 # print(r)
 
 
@@ -45,12 +44,12 @@ def myPow_v2(x, n):
         n = -n
 
     ans = 1
-    tmp = x
+  #  tmp = x
     while n != 0:
-        print(n, tmp, ans)
+        print(n, x, ans)
         if n % 2 == 1:
-            ans *= tmp
-        tmp *= tmp
+            ans *= x
+        x *= x
         n //= 2
     return ans
 
