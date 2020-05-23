@@ -219,9 +219,39 @@ https://www.jiuzhang.com/solution/middle-of-linked-list/#tag-highlight-lang-pyth
 
 
 
+#### 在排好序的区间序列中插入新区间
+- 问题描述
+- 给一个排好序的区间序列，插入一段新区间。求插入之后的区间序列。要求输出的区间序列是没有重叠的。
 
+LintCode 练习地址：http://www.lintcode.com/problem/insert-interval/
 
+算法描述
+1. 将该新区间按照左端值插入原区间中，使得原区间左端值是有序的。
+2. 遍历原区间列表，并把它复制到一个新的answer区间列表当中，answer是最后要返回的结果。
+3. 遍历时，要记录上一次访问的区间last。若当前区间左端值小于等于last区间的右端值，说明这两区间有重叠，此时仅更新last的右端值为这两区间右端值较大者；若当前区间左端值大于last的右端值，则可以直接加入answer。
+4. 返回answer。
+```commandline
+class Solution:
+      # @param intervals: Sorted interval list.
+      # @param newInterval: new interval.
+      # @return: A new interval list.
+      def insert(self, intervals, new_interval):
+          answer = []
 
+          index = 0
+          while index < len(intervals) and intervals[index].start < new_interval.start:
+              index += 1
+          intervals.insert(index, new_interval)
+
+          last = None
+          for item in intervals:
+              if last == None or last.end < item.start:
+                  answer.append(item)
+                  last = item
+              else:
+                  last.end = max(last.end, item.end)
+          return answer
+```
 
 
 
