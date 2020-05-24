@@ -44,3 +44,17 @@ def main():
     # 此时x仍然是0
 ```
 上面两者的区别在于，人们习惯性的认为 subset.add 和 x = x + 1 都是对参数进行了修改。而事实上，x = x + 1 确实是对参数进行了修改，这个修改只在函数func的局部有效，出了func回到main就失效了。而 subset.add 并没有修改 subset 这个参数本身，而只是在 subset 所指向的内存空间中增加了一个新的元素，这个操作是永久性的，不是临时的，是全局有效的，不是局部有效的。那么怎么样才是对 subset 这个参数进行了修改呢？比如：
+```commandline
+def func(subset):
+    subset = list(subset)
+    subset.append(1)
+
+def main():
+    subset = []
+    # 此时 subset 是 []
+    func(subset)
+    # 此时 subset 还是 []
+}
+```
+我们可以看到如果你的修改操作是 参数x = ... 那么这才是对参数x的修改，而 参数x.call_method() 并不是对参数 x 本身的修改。
+
