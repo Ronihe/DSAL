@@ -67,6 +67,14 @@ it should be noted that many people dislike the Singleton design pattern, even c
 One reason for this is that it can interfere with unit testing.
 
 ### Factory Method
+@classmethod
+creating product objects without specifying their concrete classes.
+
+Subclasses can override this method to change the class of objects that will be created.
+
+One simple reason is you can change theu nderlying class later easily
+because your code is just calling a method
+you can change what it returns later on
 
 
 
