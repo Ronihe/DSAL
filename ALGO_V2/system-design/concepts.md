@@ -36,4 +36,10 @@ part of the operation system
  
  
  
+ ## distributed system
+ a collection of autonomous computers linked by a computer network and equipped with  distributed system software
+ 
+ distributed system software is to coordinate activities and share resources (hardware, software and even the data ) 
+ 
+ 
     
