@@ -1,4 +1,3 @@
-
 # using quque to implement a stack:
 
 # 算法步骤
@@ -20,27 +19,27 @@ class Stack:
         self.queue2 = deque()
 
     # 将queue1中元素移入queue2,留下最后一个。
-    def moveItems(self):
+    def move_items(self):
         while len(self.queue1) != 1:
             self.queue2.append(self.queue1.popleft())
 
-    def swapQueues(self):
+    def swap_queues(self):
         self.queue1, self.queue2 = self.queue2, self.queue1
 
     def push(self, x):
         self.queue1.append(x)
 
     def pop(self):
-        self.moveItems()
+        self.move_items()
         self.queue1.popleft()
-        self.swapQueues()
+        self.swap_queues()
 
     def top(self):
-        self.moveItems()
+        self.move_items()
         item = self.queue1.popleft()
-        self.swapQueues()
+        self.swap_queues()
         self.queue1.append(item)
         return item
 
-    def isEmpty(self):
+    def is_empty(self):
         return len(self.queue1) == 0
