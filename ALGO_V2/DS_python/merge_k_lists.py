@@ -21,3 +21,61 @@
 
 # follow up
 # 如果我们每个文件只读入1个元素并放入堆里的话，总共只用到了 1024 个元素，这很小，没有充分的利用好内存。另外，单个读入和单个输出的方式也不是磁盘的高效使用方式。因此我们可以为输入和输出都分别加入一个缓冲（Buffer）。假如一个元素有10个字节大小的话，1024 个元素一共 10K，1G的内存可以支持约 100K 组这样的数据，那么我们就为每个文件设置一个 100K 大小的 Buffer，每次需要从某个文件中读数据，都将这个 Buffer 装满。当然 Buffer 中的数据都用完的时候，再批量的从文件中读入。输出同理，设置一个 Buffer 来避免单个输出带来的效率缓慢。
+
+
+# https://www.lintcode.com/problem/merge-k-sorted-lists/description?_from=ladder&&fromId=1
+# https://www.jiuzhang.com/solution/merge-k-sorted-lists/
+class ListNode(object):
+
+    def __init__(self, val, next=None):
+        self.val = val
+        self.next = next
+
+
+ListNode.__lt__ = lambda x, y: (x.val < y.val)
+
+# using heap:
+import heapq
+
+
+def merge_k_lists(lists):
+    if not lists:
+        return None
+    dummy_header = ListNode(0)
+    tail = dummy_header
+    heap = []
+
+    for head in lists:
+        if head:
+            heapq.heappush(heap, head)
+    while heap:
+        head= heapq.heappop(heap)
+        tail.next = head
+        tail = head
+        if head.next:
+            heapq.heappush(heap, head.next)
+    return dummy_header.next
+
+
+# need to know:
+def merge_two_linkedL(head1, head2):
+    dummy = tail = ListNode(0)
+    while head1 and head2:
+        if head1.val < head2.val:
+            tail.next = head1
+            head1 = head1.next
+        else:
+            tail.next = head2
+            head2 = head2.next
+        tail = tail.next
+    if head1:
+        tail.next = head1
+    if head2:
+        tail.next = head2
+    return dummy.next
+
+
+
+
+
+
