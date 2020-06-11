@@ -2,6 +2,37 @@ import os
 import pprint
 
 
+class Game:
+    def __init__(self, board, player1, player2):
+        self._board = board
+        self._players = (player1, player2)
+        self.moves = 0
+
+    def greet(self):
+        print(f'welcome to tic tac toe! player {self._players[0].avator} and player {self._players[1].avator}')
+
+    def play(self):
+        flag = True
+        while flag:
+            self._board.display()
+
+            turn = self.moves % 2
+            curr_player = self._players[turn]
+
+    def make_move(self, player):   
+
+
+
+
+    def game_over(self, player):
+        print(f'thanks for playing, {player.avatar} won!')
+
+
+class Player:
+    def __init__(self, avatar):
+        self.avatar = avatar
+
+
 class Board:
     def __init__(self, size):
         self.cells = [["" for c in range(size)] for r in range(size)]
@@ -29,20 +60,19 @@ class Board:
             if all([row[col] == player for row in self.cells]):
                 return f'{player} won'
         print([self.cells[row][col] == player for row in range(len(self.cells)) for col in range(len(self.cells)) if
-            row == col])
+               row == col])
         if all([self.cells[row][col] == player for row in range(len(self.cells)) for col in range(len(self.cells)) if
-            row == col]):
+                row == col]):
             return f'{player} won'
 
         if all([self.cells[row][col] == player for row in range(len(self.cells)) for col in range(len(self.cells)) if
-            row + col == len(self.cells)]):
+                row + col == len(self.cells)]):
             return f'{player} won'
 
         return False
 
     def is_tie(self):
-        return all([c for row in self.cells for c in row ])
-
+        return all([c for row in self.cells for c in row])
 
 
 b = Board(3)
