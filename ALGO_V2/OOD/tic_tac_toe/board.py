@@ -4,6 +4,8 @@ import pprint
 
 class Game:
     def __init__(self, board, player1, player2):
+        if player1.avatar == player2.avatar:
+            raise NameError("two players can not have the same avatars")
         self._board = board
         self._players = (player1, player2)
         self.moves = 0
@@ -18,11 +20,29 @@ class Game:
 
             turn = self.moves % 2
             curr_player = self._players[turn]
+            self.make_move(curr_player)
+            if self.check_win(curr_player) or self.check_tie():
+                self.game_over(curr_player)
+                break
 
-    def make_move(self, player):   
+    def make_move(self, player):
+        row, col = self.ask_for_move(player)
+        self._board.update_cell(row, col, player.avatar)
+        self.moves += 1
 
+    def ask_for_move(self, player):
+        row = int(input(f"\n {player.avatar}, please choose row number with in the size"))
+        col = int(input(f"\n {player.avatar}, please choose col number within the size"))
+        if not self._board.validate(row, col):
+            print("not valid move, please try again")
+            self.ask_for_move(player)
+        return row, col
 
+    def check_win(self, player):
+        return self._board.is_winner(player)
 
+    def check_tie(self):
+        return self.moves >= self._board.size ** 2
 
     def game_over(self, player):
         print(f'thanks for playing, {player.avatar} won!')
@@ -35,13 +55,13 @@ class Player:
 
 class Board:
     def __init__(self, size):
+        self.size = size
         self.cells = [["" for c in range(size)] for r in range(size)]
 
     def display(self):
         pprint.pprint(self.cells, width=25)
 
     def update_cell(self, row, col, player):
-        print(self.cells[row - 1][col - 1])
         if not self.cells[row - 1][col - 1]:
             self.cells[row - 1][col - 1] = player
         else:
@@ -49,18 +69,23 @@ class Board:
 
         print(self.is_winner(player))
 
+    def validate(self, row, col):
+        if (row < 0 or row >= self.size) or (col < 0 or col >= self.size):
+            return False
+        if self.cells[row][col]:
+            return False
+
+        return True
+
     def is_winner(self, player):
         for row in self.cells:
-            print("horizontal", all([cell == player for cell in row]))
             if all([cell == player for cell in row]):
                 return f'{player} won'
 
         for col in range(len(self.cells[0])):
-            print([row[col] == player for row in self.cells])
             if all([row[col] == player for row in self.cells]):
                 return f'{player} won'
-        print([self.cells[row][col] == player for row in range(len(self.cells)) for col in range(len(self.cells)) if
-               row == col])
+
         if all([self.cells[row][col] == player for row in range(len(self.cells)) for col in range(len(self.cells)) if
                 row == col]):
             return f'{player} won'
@@ -71,34 +96,9 @@ class Board:
 
         return False
 
-    def is_tie(self):
-        return all([c for row in self.cells for c in row])
 
-
-b = Board(3)
-
-
-def print_header():
-    print("welcome to play tic tac toe")
-
-
-def refresh():
-    # todo belong to game class
-    # os.system("clear")
-    # print_header()
-    # show the board
-    b.display()
-
-
-while True:
-    refresh()
-    # get x input
-    x_row = int(input("\nX, please choose row number with in the size"))
-    x_col = int(input("\nX, please choose col wihtin the size"))
-    b.update_cell(x_row, x_col, "X")
-
-    refresh()
-    # get x input
-    o_row = int(input("\nO, please choose row number with in the size"))
-    o_col = int(input("\nO, please choose col number wihtin the size"))
-    b.update_cell(o_row, o_col, "O")
+board = Board(3)
+player1 = Player("X")
+player2 = Player("O")
+game = Game(board, player1, player2)
+game.play()
